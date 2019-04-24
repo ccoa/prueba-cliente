@@ -53,7 +53,7 @@ public class ClienteController {
 		return new ResponseEntity<Object>(saludo, HttpStatus.OK);
 	}
 	
-	@RequestMapping(method = RequestMethod.POST, consumes = "application/json")
+	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Object> agregar(@RequestParam("cliente") String cliente) {
 		
 		clientes.add(cliente);
