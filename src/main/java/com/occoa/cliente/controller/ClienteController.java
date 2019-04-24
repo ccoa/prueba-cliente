@@ -9,19 +9,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 @RequestMapping("/clientes")
 public class ClienteController {
 
-	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<Object> listar() {
-		
+	private static List<String> clientes = getClientes();
+	
+	private List<String> getClientes() {
 		List<String> clientes = new ArrayList<>();
 		
 		clientes.add("Omar");
 		clientes.add("Steve");
 		clientes.add("Amy");
+		
+		return clientes;
+	}
+	
+	@RequestMapping(method = RequestMethod.GET)
+	public ResponseEntity<Object> listar() {
 		
 		return new ResponseEntity<Object>(clientes, HttpStatus.OK);
 	}
@@ -44,5 +51,13 @@ public class ClienteController {
 		String saludo = "Hola " + cliente;
 		
 		return new ResponseEntity<Object>(saludo, HttpStatus.OK);
+	}
+	
+	@RequestMapping(method = RequestMethod.POST)
+	public ResponseEntity<Object> agregar(@RequestParam("cliente") String cliente) {
+		
+		clientes.add(cliente);
+		
+		return new ResponseEntity<Object>(clientes, HttpStatus.OK);
 	}
 }
