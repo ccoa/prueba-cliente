@@ -17,7 +17,7 @@ public class ClienteController {
 
 	private static List<String> clientes = getClientes();
 	
-	private List<String> getClientes() {
+	private static List<String> getClientes() {
 		List<String> clientes = new ArrayList<>();
 		
 		clientes.add("Omar");
